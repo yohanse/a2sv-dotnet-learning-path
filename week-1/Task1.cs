@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 namespace Program;
 
-public class Program
+class Program
 {
     struct Subject
     {
@@ -35,7 +35,7 @@ public class Program
         }
 
     }
-    static void Main()
+    static void Method()
     {
         // Student Object
         Student Student1;
