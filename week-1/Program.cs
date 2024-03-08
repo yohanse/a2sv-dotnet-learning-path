@@ -20,15 +20,18 @@ public class Program
         public int NumberOfSubject;
         public Subject[] Subjects;
 
+        public decimal Average() {
+            decimal Total = 0;
+            for (int i=0; i < NumberOfSubject; i++) {
+                Total += Subjects[i].Score;
+            }
+            return Total / NumberOfSubject;
+        }
         public override string ToString()
         {
-            decimal TotalValue = 0;
-            string SubjectsString = string.Join('\n', Subjects.Select(subject =>
-            {
-                TotalValue += subject.Score;
-                return subject.ToString();
-            }));
-            return $"Name ---> {Name} number of subjects ------> {NumberOfSubject}\n{SubjectsString}\n Average ----> {TotalValue / NumberOfSubject}";
+            
+            string SubjectsString = string.Join('\n', Subjects.Select(subject => subject.ToString()));
+            return $"Name ---> {Name} number of subjects ------> {NumberOfSubject}\n{SubjectsString}\n Average ----> {this.Average()}";
         }
 
     }
@@ -40,7 +43,7 @@ public class Program
         // Accepting Name
         Console.WriteLine("Your Name: ");
         Student1.Name = Console.ReadLine() ?? "";
-        while (!Student1.Name.All(char.IsLetter))
+        while (Student1.Name.Any(char.IsDigit))
         {
             Console.WriteLine("Your name must be letter only !!!");
             Student1.Name = Console.ReadLine() ?? "";
@@ -67,7 +70,7 @@ public class Program
 
             Console.Write("Subject Name: ");
             Subject1.Name = Console.ReadLine() ?? "";
-            while (Subject1.Name.All(char.IsDigit))
+            while (Subject1.Name.Any(char.IsDigit))
             {
                 Console.WriteLine("Subject name must be letter only !!! ");
                 Subject1.Name = Console.ReadLine() ?? "";
@@ -83,6 +86,7 @@ public class Program
             Student1.Subjects[i] = Subject1;
         }
         Console.WriteLine(Student1);
+        Console.WriteLine(Student1.Average());
 
     }
 }
