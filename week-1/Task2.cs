@@ -1,7 +1,7 @@
 namespace Task2;
 public class Task2
 {
-    static void Main()
+    static void Method()
     {
         Console.Write("Enter String: ");
         string String = Console.ReadLine() ?? "";
