@@ -1,5 +1,5 @@
 class Task3 {
-    static void Main() {
+    static void Method() {
         Console.WriteLine("Enter Word: ");
         string String = Console.ReadLine() ?? "";
         int left = 0;
