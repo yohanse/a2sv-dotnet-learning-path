@@ -62,6 +62,12 @@ public class Triangle:Shape{
     }
 }
 
+// Function Using Polymorphism
+
+//     static string PrintShapeArea(Shape shape) {
+//         return shape.Name;
+//     }
+
 
 // Main Method implmentation
 
