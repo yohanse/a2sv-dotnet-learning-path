@@ -1,42 +1,29 @@
 using System;
-class Program {
-    static void Main() {
-        Library library = new Library("Abrehot", "4 kilo");
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+class Program
+{
+    static async System.Threading.Tasks.Task Main()
+    {
+        TaskManager taskManager = new TaskManager
+        {
+            Tasks = {
+                new Task{Name="Coffee", IsCompleted=true, Catatgory=Catagories.Personal, Description="Nothing"},
+                new Task{Name="Tea", IsCompleted=false, Catatgory=Catagories.Work, Description="Nothing"},
+                new Task{Name="Burger", IsCompleted=true, Catatgory=Catagories.Errands, Description="Nothing"},
+                new Task{Name="Pizza", IsCompleted=true, Catatgory=Catagories.Personal, Description="Nothing"},
+                }
+        };
+        string filePath = "tasks.csv";
 
-        Book book1 = new Book(1, "Harry Potter", "yuioio ", "ISBN", 2000);
-        Book book2 = new Book(2, "Harry Potter", "yuioio ", "ISBN", 2000);
-        Book book3 = new Book(3, "Harry Potter", "yuioio ", "ISBN", 2000);
-        Book book4 = new Book(4, "Harry Potter", "yuioio ", "ISBN", 2000);
-        Book book5 = new Book(5, "Harry Potter", "yuioio ", "ISBN", 2000);
-        Console.WriteLine(book1);
+        // Write data to CSV file asynchronously
+        await taskManager.Writing(filePath);
 
-        MediaItem mediaItem1 = new MediaItem(1, "music", "podcast", 200);
-        MediaItem mediaItem2 = new MediaItem(2, "music", "podcast", 200);
-        MediaItem mediaItem3 = new MediaItem(3, "music", "podcast", 200);
-        MediaItem mediaItem4 = new MediaItem(4, "music", "podcast", 200);
-        MediaItem mediaItem5 = new MediaItem(5, "music", "podcast", 200);
-        Console.WriteLine(mediaItem1);
-        Console.WriteLine("Add Book----------------------------");
-        Console.WriteLine(library.AddBook(book1));
-        Console.WriteLine("Add Book-------------------------");
-        Console.WriteLine(library.AddBook(book2));
-        Console.WriteLine("Remove Book ------------------------------------");
-        Console.WriteLine(library.RemoveBook(book1));
-        Console.WriteLine("Remove Book ------------------------------------");
-        Console.WriteLine(library.RemoveBook(book3));
-
-        Console.WriteLine("Add MediaItem ------------------------------------");
-        Console.WriteLine(library.AddMediaItem(mediaItem1));
-        Console.WriteLine("Add MediaItem ------------------------------------");
-        Console.WriteLine(library.AddMediaItem(mediaItem2));
-        Console.WriteLine("Remove MediaItem ------------------------------------");
-        Console.WriteLine(library.RemoveMediaItem(mediaItem1));
-        Console.WriteLine("Remove MediaItem ------------------------------------");
-        Console.WriteLine(library.RemoveMediaItem(mediaItem3));
-        Console.WriteLine("Print Library ------------------------------------");
-        library.PrintCatalog();
-
+        Console.WriteLine("CSV file written successfully.");
+        taskManager.Display();
+        Console.WriteLine("--------------------------------------------");
+        taskManager.FilterUsingCatagory(Catagories.Personal);
+        
     }
-
-    
 }
