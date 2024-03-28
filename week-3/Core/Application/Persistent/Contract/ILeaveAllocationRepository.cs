@@ -1,7 +1,7 @@
 using Core;
 
 namespace Application;
-public interface ILeaveAllocationtRepository : IGenericRepository<LeaveAllocation>
+public interface ILeaveAllocationRepository : IGenericRepository<LeaveAllocation>
 {
 
 }
