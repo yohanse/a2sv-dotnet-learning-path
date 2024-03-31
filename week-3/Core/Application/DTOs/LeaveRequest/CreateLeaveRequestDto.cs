@@ -1,4 +1,4 @@
-namespace Core;
+namespace Application;
 public class CreateLeaveRequestDto
 {
     public DateTime StartDate { get; set; }
