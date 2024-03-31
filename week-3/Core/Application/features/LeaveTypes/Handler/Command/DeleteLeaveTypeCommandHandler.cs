@@ -1,4 +1,5 @@
 using AutoMapper;
+using Core;
 using MediatR;
 
 namespace Application;
@@ -17,7 +18,9 @@ public class DeleteLeaveTypeCommandHandler : IRequestHandler<DeleteLeaveTypeComm
     public async Task<Unit> Handle(DeleteLeaveTypeCommand request, CancellationToken cancellationToken)
     {
         var leaveType = await _LeaveTypeRepository.Get(request.Id);
-
+        if(leaveType == null) {
+          throw new NotFoundException(nameof(LeaveType), request.Id);
+        }
         await _LeaveTypeRepository.Delete(leaveType);
         return Unit.Value;
     }

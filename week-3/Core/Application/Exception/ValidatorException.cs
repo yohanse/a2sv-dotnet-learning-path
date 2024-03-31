@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+using FluentValidation.Results;
 
 namespace Application;
 
@@ -8,9 +8,12 @@ public class ValidatorException : ApplicationException {
 
     public ValidatorException(ValidationResult validationResult)
     {
-        for(var error in validationResult.) {
-
+        foreach(var error in validationResult.Errors) {
+            Errors.Add(error.ErrorMessage);
         }
     }
 
+    public ValidatorException()
+    {
+    }
 }
